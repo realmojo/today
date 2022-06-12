@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1002157577491",
+    "project_id": "today-52511",
+    "storage_bucket": "today-52511.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002157577491:android:32993962deaa5722ddf6e6",
+        "android_client_info": {
+          "package_name": "com.f5game.today"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002157577491-bqm8shs07oj2mfu94t2c1lf9jitk35h9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBthPvhpNaobuKN1eLCO0Pax9Xi-j5LVJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002157577491-bqm8shs07oj2mfu94t2c1lf9jitk35h9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
