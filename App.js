@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   NavigationContainer,
   useNavigationContainerRef,
@@ -20,7 +20,7 @@ import {Edit} from './screens/Edit';
 import {useQuery} from 'react-query';
 import {LoadingIndicator} from './components';
 import {getBirthData} from './api/login';
-import {luckStore} from './stores/luck';
+import {dataStore} from './stores/data';
 
 const queryClient = new QueryClient();
 const Stack = createStackNavigator();
@@ -34,10 +34,10 @@ const TotalStack = observer(() => {
     onSuccess: async data => {
       console.log('logon data: ', data);
       if (data) {
-        await luckStore.setData();
-        setDataLoading(false);
+        await dataStore.setData();
         loginStore.setIslogin(true);
       }
+      setDataLoading(false);
     },
   });
 
@@ -75,6 +75,7 @@ const TotalStack = observer(() => {
 export default function App() {
   const routeNameRef = useRef();
   const navigationRef = useNavigationContainerRef();
+
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
@@ -99,7 +100,8 @@ export default function App() {
                 });
               }
               routeNameRef.current = currentRouteName;
-            }}>
+            }}
+          >
             <TotalStack />
           </NavigationContainer>
         </ApplicationProvider>

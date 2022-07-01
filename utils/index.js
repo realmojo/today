@@ -7,7 +7,7 @@ import {Text} from '@ui-kitten/components';
 export const cardHeader = name => {
   return (
     <View style={styles.cardPadding}>
-      <Text category="h6">
+      <Text style={{flex: 1}} category="h6">
         {name === '총운' ? (
           <MaterialCommunityIcons
             className="icon"
@@ -80,7 +80,8 @@ export const convertKeyword = value => {
               .replace('“', '')
               .replace('”', '')}`,
           )
-        }>
+        }
+      >
         {word[0].replace('“', '').replace('”', '')}
       </Text>
     );

@@ -1,8 +1,8 @@
 import {loginStore} from './login';
-import {luckStore} from './luck';
+import {dataStore} from './data';
 
 const useStore = () => {
-  return {loginStore, luckStore};
+  return {loginStore, dataStore};
 };
 
 export default useStore;

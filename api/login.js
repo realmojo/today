@@ -11,6 +11,17 @@ const setData = async ({gender, birth, solarCal, time}) => {
   }
 };
 
+const removeData = async () => {
+  try {
+    await AsyncStorage.removeItem('gender');
+    await AsyncStorage.removeItem('birth');
+    await AsyncStorage.removeItem('solarCal');
+    await AsyncStorage.removeItem('time');
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const getAllData = async () => {
   const gender = await AsyncStorage.getItem('gender');
   const birth = await AsyncStorage.getItem('birth');
@@ -44,6 +55,7 @@ const getTimeData = async () => {
 export {
   setData,
   getAllData,
+  removeData,
   getGenderData,
   getBirthData,
   getSolarCalData,

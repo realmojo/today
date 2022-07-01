@@ -1,14 +1,14 @@
 import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import {TodayLuck, TomorrowLuck, MonthLuck, Setting} from '../components';
+import {Luck, Zodiac, Star, Setting} from '../components';
 const Tab = createMaterialTopTabNavigator();
 
 export const BottomTab = () => {
   return (
     <>
       <Tab.Navigator
-        initialRouteName="todayLuck"
+        initialRouteName="Luck"
         screenOptions={{
           tabBarActiveTintColor: '#7b7b7b',
           tabBarInactiveTintColor: '#dedede',
@@ -17,10 +17,11 @@ export const BottomTab = () => {
           tabBarStyle: {backgroundColor: 'white'},
           tabBarPressColor: '#dedede',
         }}
-        tabBarPosition="bottom">
+        tabBarPosition="bottom"
+      >
         <Tab.Screen
-          name="todayLuck"
-          component={TodayLuck}
+          name="Luck"
+          component={Luck}
           options={{
             lazy: true,
             tabBarLabel: '오늘 운세',
@@ -30,30 +31,26 @@ export const BottomTab = () => {
           }}
         />
         <Tab.Screen
-          name="tomorrowLuck"
-          component={TomorrowLuck}
+          name="Zodiac"
+          component={Zodiac}
           options={{
             lazy: true,
             lazyPreloadDistance: 1,
-            tabBarLabel: '내일 운세',
+            tabBarLabel: '띠별 운세',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons
-                name="ice-cream"
-                color={color}
-                size={26}
-              />
+              <MaterialCommunityIcons name="cow" color={color} size={26} />
             ),
           }}
         />
         <Tab.Screen
-          name="monthLuck"
-          component={MonthLuck}
+          name="Star"
+          component={Star}
           options={{
             lazy: true,
             lazyPreloadDistance: 1,
-            tabBarLabel: '이달의 운세',
+            tabBarLabel: '별자리 운세',
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="heart" color={color} size={26} />
+              <MaterialCommunityIcons name="star" color={color} size={26} />
             ),
           }}
         />

@@ -1,21 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
-import {
-  Text,
-  Input,
-  Layout,
-  Button,
-  Divider,
-  ListItem,
-} from '@ui-kitten/components';
-import useStore from '../stores';
+import {Text, Layout, Divider, ListItem} from '@ui-kitten/components';
 import {observer} from 'mobx-react';
 import {Admob} from '../components';
+// import {removeData} from '../api';
 
 export const Setting = observer(({navigation}) => {
   const doEdit = () => {
     navigation.push('edit');
   };
+
+  // const doLogout = async () => {
+  //   await removeData();
+  // };
   return (
     <Layout level="2" style={{height: '100%'}}>
       <View style={{flex: 1}}>
@@ -23,9 +20,11 @@ export const Setting = observer(({navigation}) => {
           <View style={styles.logoWrap}>
             <Image
               style={styles.avatar}
-              source={require('../assets/images/logo.png')}
+              source={require('../assets/images/logo2.png')}
             />
-            <Text category="h1">오늘의 운세</Text>
+            <Text category="h1" style={{color: 'white'}}>
+              오늘의 운세
+            </Text>
           </View>
         </View>
         <Layout level="2">
@@ -37,12 +36,8 @@ export const Setting = observer(({navigation}) => {
           <Divider />
           {/* <ListItem
             style={styles.listItem}
-            title="피드백을 주세요"
-            onPress={() =>
-              Linking.openURL(
-                'https://play.google.com/store/apps/details?id=com.f5game.gomap',
-              )
-            }
+            title="제거"
+            onPress={() => doLogout()}
           />
           <Divider /> */}
         </Layout>
@@ -54,7 +49,7 @@ export const Setting = observer(({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#36c5a9',
+    backgroundColor: '#1abc9c',
   },
   logoWrap: {
     alignItems: 'center',

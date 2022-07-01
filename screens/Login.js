@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ToastAndroid} from 'react-native';
 import {
   Text,
   Radio,
@@ -13,7 +13,7 @@ import {
 } from '@ui-kitten/components';
 import {setData} from '../api/login';
 import {loginStore} from '../stores/login';
-import {luckStore} from '../stores/luck';
+import {dataStore} from '../stores/data';
 
 const solarCals = ['양력', '음력'];
 
@@ -71,9 +71,13 @@ export const Login = () => {
     if (birth === '') {
       inputRef.current.focus();
     }
-    if (gender && birth && solarCal && time !== '') {
+    if (birth.length !== 8) {
+      ToastAndroid.show('8자리로 입력해주세요', ToastAndroid.SHORT);
+      inputRef.current.focus();
+    }
+    if (gender && birth && birth.length === 8 && solarCal && time !== '') {
       await setData({gender, birth, solarCal, time});
-      await luckStore.setData();
+      await dataStore.setData();
       loginStore.setIslogin(true);
     }
   };
@@ -90,7 +94,8 @@ export const Login = () => {
             <RadioGroup
               style={styles.radioGroupWrap}
               selectedIndex={selectedGender}
-              onChange={index => doSelectedGender(index)}>
+              onChange={index => doSelectedGender(index)}
+            >
               <Radio status="info">남자</Radio>
               <Radio status="info">여자</Radio>
             </RadioGroup>
@@ -113,7 +118,8 @@ export const Login = () => {
               selectedIndex={selectedCalendar}
               placeholder="선택해 주세요"
               value={solarCals[viewSolarCal]}
-              onSelect={index => doSelectedCalendar(index)}>
+              onSelect={index => doSelectedCalendar(index)}
+            >
               <SelectItem title="양력" />
               <SelectItem title="음력" />
             </Select>
@@ -124,7 +130,8 @@ export const Login = () => {
               placeholder="선택해 주세요"
               selectedIndex={selectedTime}
               value={times[time]}
-              onSelect={index => doSelectedTime(index)}>
+              onSelect={index => doSelectedTime(index)}
+            >
               {times.map((item, index) => (
                 <SelectItem key={index} title={item} />
               ))}
@@ -135,7 +142,8 @@ export const Login = () => {
             loading
             size="large"
             status="info"
-            onPress={() => doLogin()}>
+            onPress={() => doLogin()}
+          >
             시작하기
           </Button>
         </View>

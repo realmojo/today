@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {
   Text,
@@ -13,8 +13,7 @@ import {
 } from '@ui-kitten/components';
 import {useQuery} from 'react-query';
 import {setData, getAllData} from '../api/login';
-import {loginStore} from '../stores/login';
-import {luckStore} from '../stores/luck';
+import {dataStore} from '../stores/data';
 
 const solarCals = ['양력', '음력'];
 
@@ -101,7 +100,7 @@ export const Edit = ({navigation}) => {
     }
     if (gender && birth && solarCal && time !== '') {
       await setData({gender, birth, solarCal, time});
-      await luckStore.setData();
+      await dataStore.setData();
       navigation.pop();
     }
   };
@@ -118,7 +117,8 @@ export const Edit = ({navigation}) => {
             <RadioGroup
               style={styles.radioGroupWrap}
               selectedIndex={selectedGender}
-              onChange={index => doSelectedGender(index)}>
+              onChange={index => doSelectedGender(index)}
+            >
               <Radio status="info">남자</Radio>
               <Radio status="info">여자</Radio>
             </RadioGroup>
@@ -141,7 +141,8 @@ export const Edit = ({navigation}) => {
               selectedIndex={selectedCalendar}
               placeholder="선택해 주세요"
               value={solarCals[viewSolarCal]}
-              onSelect={index => doSelectedCalendar(index)}>
+              onSelect={index => doSelectedCalendar(index)}
+            >
               <SelectItem title="양력" />
               <SelectItem title="음력" />
             </Select>
@@ -152,7 +153,8 @@ export const Edit = ({navigation}) => {
               placeholder="선택해 주세요"
               selectedIndex={selectedTime}
               value={times[time]}
-              onSelect={index => doSelectedTime(index)}>
+              onSelect={index => doSelectedTime(index)}
+            >
               {times.map((item, index) => (
                 <SelectItem key={index} title={item} />
               ))}
@@ -163,7 +165,8 @@ export const Edit = ({navigation}) => {
             loading
             size="large"
             status="info"
-            onPress={() => doLogin()}>
+            onPress={() => doLogin()}
+          >
             변경하기
           </Button>
         </View>
